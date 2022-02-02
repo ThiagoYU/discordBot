@@ -16,6 +16,9 @@ client.on('messageCreate', msg => {
     if (msg.content === 'ping') {
         msg.reply('Pong!');
     }
+    else if (msg.content === 'pong') {
+        msg.reply('Ping!');
+    }
 });
 
 //make sure this line is the last line
