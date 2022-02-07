@@ -1,6 +1,6 @@
 module.exports = {
     name: "clearPlayers",
-    category: "info",
+    category: "game",
     permissions: [],
     devOnly: false,
     run: async ({witchPlayerList, message, args }) => {
