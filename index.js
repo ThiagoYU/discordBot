@@ -14,7 +14,7 @@ const client = new Discord.Client({
 let context = {
   client,
   prefix: "sudo",
-  owners: [],
+  owners: ['241958969495650306', '337055700163362816'], // [Yussuki, Pedro] 
   witchPlayerList: []
 }
 

@@ -1,6 +1,6 @@
 module.exports = {
-    name: "list",
-    category: "info",
+    name: "listplayers",
+    category: "game",
     permissions: [],
     devOnly: false,
     run: async ({ witchPlayerList, message, args }) => {

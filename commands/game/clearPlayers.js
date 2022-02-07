@@ -1,5 +1,5 @@
 module.exports = {
-    name: "clear",
+    name: "clearPlayers",
     category: "info",
     permissions: [],
     devOnly: false,

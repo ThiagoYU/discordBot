@@ -1,6 +1,6 @@
 module.exports = {
-    name: "join",
-    category: "info",
+    name: "joingame",
+    category: "game",
     permissions: [],
     devOnly: false,
     run: async ({ witchPlayerList, message, args }) => {
