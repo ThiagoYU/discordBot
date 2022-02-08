@@ -58,7 +58,7 @@ module.exports = {
             freePlayers.splice(randomIndex, 1)
 
             // Send player its role
-            sendDM(randomPlayer, 'assassin')
+            sendDM(randomPlayer, 'prophet')
         }
     }
 }
