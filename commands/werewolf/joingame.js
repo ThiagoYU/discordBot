@@ -1,16 +1,16 @@
 module.exports = {
     name: "joingame",
-    category: "game",
+    category: "werewolf",
     permissions: [],
     devOnly: false,
-    run: async ({ witchPlayerList, message, args }) => {
+    run: async ({ werewolfContext, message, args }) => {
         // If author already in list
-        if (witchPlayerList.indexOf(message.author) !== -1) {
+        if (werewolfContext.playerList.indexOf(message.author) !== -1) {
             // Notify user it is already in image
             message.reply(`${message.author} is already registered in the game.`)
         } else {
             // Add user in the list
-            witchPlayerList.unshift(message.author)
+            werewolfContext.playerList.unshift(message.author)
             message.reply(`${message.author} added to the game! \\o/`)
         }
     }
