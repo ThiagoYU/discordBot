@@ -1,14 +1,14 @@
 module.exports = {
-    name: "listplayers",
-    category: "game",
+    name: "list",
+    category: "werewolf",
     permissions: [],
     devOnly: false,
     run: async ({ werewolfContext, message, args }) => {
         // Check if list is empty
         if (werewolfContext.playerList && werewolfContext.playerList.length === 0) {
-            message.reply('No player joined the game Q-Q')
+            message.reply('The village is empty... :house_abandoned::house_abandoned::house_abandoned:')
         } else {
-            playerListMessage = `List of players (${werewolfContext.playerList.length}):\n`
+            playerListMessage = `Inhabitants of the village (${werewolfContext.playerList.length}):\n`
             // For each user in list
             werewolfContext.playerList.forEach((user, index) => {
                 // Add him in message

@@ -1,8 +1,8 @@
 const { getFiles } = require("../utils/file")
 
 
-module.exports = (bot, reload) => {
-    const {client} = bot
+module.exports = (context, reload) => {
+    const {client} = context
 
     let events = getFiles("./events/", ".js")
 
@@ -21,15 +21,15 @@ module.exports = (bot, reload) => {
     })
 
     if (!reload)
-        initEvents(bot)
+        initEvents(context)
 }
 
-function triggerEventHandler(bot, eventName, ...args){
-    const {client} = bot 
+function triggerEventHandler(context, eventName, ...args){
+    const {client} = context 
 
     try {
         if (client.events.has(eventName))
-            client.events.get(eventName).run(bot, ...args)
+            client.events.get(eventName).run(context, ...args)
         else 
             throw new Error(`Event ${eventName} does not exist`)
     }
@@ -38,14 +38,14 @@ function triggerEventHandler(bot, eventName, ...args){
     }
 }
 
-function initEvents(bot) {
-    const {client} = bot
+function initEvents(context) {
+    const {client} = context
 
     client.on("ready", () => {
-        triggerEventHandler(bot, "ready")
+        triggerEventHandler(context, "ready")
     })
 
     client.on("messageCreate", (message) => {
-        triggerEventHandler(bot, "messageCreate", message)
+        triggerEventHandler(context, "messageCreate", message)
     })
 }

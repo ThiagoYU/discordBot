@@ -1,8 +1,8 @@
 const { getFiles } = require("../utils/file")
 const fs = require("fs")
 
-module.exports = (bot, reload) => {
-    const {client} = bot 
+module.exports = (context, reload) => {
+    const {client} = context 
 
     fs.readdirSync("./commands/").forEach((category) => {
         let commands = getFiles(`./commands/${category}`, ".js")

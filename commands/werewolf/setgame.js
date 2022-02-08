@@ -1,6 +1,6 @@
 module.exports = {
     name: "setgame",
-    category: "game",
+    category: "werewolf",
     permissions: [],
     devOnly: true,
     run: async ({ client, message, args }) => {

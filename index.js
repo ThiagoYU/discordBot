@@ -1,17 +1,34 @@
 require('dotenv').config(); //initialize dotenv
 const Discord = require('discord.js'); //import discord.js
 
-// var witchPlayerList = []
-
 const client = new Discord.Client({
   intents: [
     "GUILDS",
-    "GUILD_MESSAGES"
-  ]
+    "GUILD_MESSAGES",
+    "DIRECT_MESSAGES"
+  ],
+  partials: ["CHANNEL"]
 }); //create new client
 
 werewolfContext = {
-  playerList: []
+  playerList: [],
+  assassinQty: 1,
+  assassinList: [],
+  prophetQty: 1,
+  prophetList: [],
+  angelQty: 1,
+  angelList: [],
+  state: {
+    states: {
+      "Not started": 0,
+      "Assassin":    1,
+      "Prophet":     2,
+      "Angel":       3,
+      "Villagers":   4,
+      "Game over":   5
+    },
+    current: 0
+  }
 }
 
 let context = {

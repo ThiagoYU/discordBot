@@ -5,12 +5,10 @@ module.exports = {
     run: async function runAll(context, message) {
         const {client, prefix, owners} = context
 
-        if (!message.guild) return 
-
-        if (message.author.context) return 
+        if (message.author.context) return
 
         if (!message.content.startsWith(prefix))
-            return 
+            return
 
         const args = message.content.slice(prefix.length).trim().split(/ +/g)
         const cmdstr = args.shift().toLowerCase()
@@ -28,8 +26,6 @@ module.exports = {
             return message.reply("You do not have permission to use this command")
         }
 
-        // dev
-        // carinha nomral com comando normal
         try {
             await command.run({...context, message, args})
         }
