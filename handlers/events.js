@@ -48,4 +48,8 @@ function initEvents(context) {
     client.on("messageCreate", (message) => {
         triggerEventHandler(context, "messageCreate", message)
     })
+
+    client.on("interactionCreate", (interaction) => {
+        triggerEventHandler(context, "interactionCreate", interaction)
+    })
 }
