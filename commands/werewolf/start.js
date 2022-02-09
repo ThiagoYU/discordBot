@@ -1,4 +1,4 @@
-sendDM = require("./utils/dmRole")
+Discord = require("discord.js")
 
 module.exports = {
     name: "start",
@@ -12,53 +12,27 @@ module.exports = {
         // Check if there's enough players
 
         // Give roles to the players
-        freePlayers = werewolfContext.playerList
-        while (werewolfContext.assassinList.length < werewolfContext.assassinQty) {
-            // Get random index and player
-            r = Math.random()*freePlayers.length
-            randomIndex = Math.floor(r)
-            randomPlayer = freePlayers[randomIndex]
+        freePlayers = werewolfContext.playerList.slice()
 
-            // Add random player to assassin list
-            werewolfContext.assassinList.push(randomPlayer)
+        werewolfContext.roles.forEach(role => {
+            defineRoles(role, freePlayers)
+        });
+    }
+}
 
-            // Remove random player from freePlayers
-            freePlayers.splice(randomIndex, 1)
+defineRoles = (role, freePlayers) => {
+    while (role.playerList.length < role.quantity) {
+        // Get random index and player
+        randomIndex = Math.floor(Math.random()*freePlayers.length)
+        randomPlayer = freePlayers[randomIndex]
 
-            // Send player its role
-            sendDM(randomPlayer, 'assassin')
-        }
+        // Add random player to role list
+        role.playerList.push(randomPlayer)
 
-        while (werewolfContext.angelList.length < werewolfContext.angelQty) {
-            // Get random index and player
-            r = Math.random()*freePlayers.length
-            randomIndex = Math.floor(r)
-            randomPlayer = freePlayers[randomIndex]
+        // Remove random player from freePlayers
+        freePlayers.splice(randomIndex, 1)
 
-            // Add random player to angel list
-            werewolfContext.angelList.push(randomPlayer)
-
-            // Remove random player from freePlayers
-            freePlayers.splice(randomIndex, 1)
-
-            // Send player its role
-            sendDM(randomPlayer, 'angel')
-        }
-
-        while (werewolfContext.prophetList.length < werewolfContext.prophetQty) {
-            // Get random index and player
-            r = Math.random()*freePlayers.length
-            randomIndex = Math.floor(r)
-            randomPlayer = freePlayers[randomIndex]
-
-            // Add random player to prophet list
-            werewolfContext.prophetList.push(randomPlayer)
-
-            // Remove random player from freePlayers
-            freePlayers.splice(randomIndex, 1)
-
-            // Send player its role
-            sendDM(randomPlayer, 'prophet')
-        }
+        // Send player its role
+        randomPlayer.send(`Congrats! You've received the role of the ${role.name}`)
     }
 }

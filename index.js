@@ -12,12 +12,24 @@ const client = new Discord.Client({
 
 werewolfContext = {
   playerList: [],
-  assassinQty: 1,
-  assassinList: [],
-  prophetQty: 1,
-  prophetList: [],
-  angelQty: 1,
-  angelList: [],
+  deadList: [],
+  roles: [
+    {
+      name: "angel",
+      quantity: 1,
+      playerList: []
+    },
+    {
+      name: "assassin",
+      quantity: 0,
+      playerList: []
+    },
+    {
+      name: "prophet",
+      quantity: 0,
+      playerList: []
+    }
+  ],
   state: {
     states: {
       "Not started": 0,
