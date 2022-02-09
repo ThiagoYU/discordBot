@@ -10,26 +10,15 @@ const client = new Discord.Client({
   partials: ["CHANNEL"]
 }); //create new client
 
+werewolfRoles = new Map()
+werewolfRoles.set("angel", { quantity: 1, playerList: []})
+werewolfRoles.set("assassin", { quantity: 0, playerList: []})
+werewolfRoles.set("prophet", { quantity: 0, playerList: []})
+
 werewolfContext = {
   playerList: [],
-  deadList: [],
-  roles: [
-    {
-      name: "angel",
-      quantity: 1,
-      playerList: []
-    },
-    {
-      name: "assassin",
-      quantity: 0,
-      playerList: []
-    },
-    {
-      name: "prophet",
-      quantity: 0,
-      playerList: []
-    }
-  ],
+  aliveList: [],
+  roles: werewolfRoles,
   state: {
     states: {
       "Not started": 0,
@@ -51,15 +40,15 @@ let context = {
 }
 
 client.commands = new Discord.Collection()
-client.events = new Discord.Collection()
-client.buttons = new Discord.Collection()
+client.events   = new Discord.Collection()
+client.buttons  = new Discord.Collection()
 
-client.loadEvents = (context, reload) => require("./handlers/events")(context, reload)
 client.loadCommands = (context, reload) => require("./handlers/commands")(context, reload)
-client.loadButtons = (context, reload) => require("./handlers/buttons")(context, reload)
+client.loadEvents   = (context, reload) => require("./handlers/events")(context, reload)
+client.loadButtons  = (context, reload) => require("./handlers/buttons")(context, reload)
 
-client.loadEvents(context, false)
 client.loadCommands(context, false)
+client.loadEvents(context, false)
 client.loadButtons(context, false)
 
 module.exports = context
