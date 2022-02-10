@@ -11,6 +11,9 @@ const startVote = (werewolfContext, msgEmbed) => {
             new MessageButton().setCustomId(`vote-${user.username}`).setStyle("PRIMARY").setLabel(user.username)
         ])
     })
+    components.push(new MessageActionRow().addComponents([
+        new MessageButton().setCustomId('vote-skip').setStyle("PRIMARY").setLabel('SKIP')
+    ]))
 
     werewolfContext.channel.send({
         embeds: [
