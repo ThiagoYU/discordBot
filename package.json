@@ -19,6 +19,7 @@
   "dependencies": {
     "axios": "^0.25.0",
     "discord.js": "^13.6.0",
-    "dotenv": "^15.0.0"
+    "dotenv": "^15.0.0",
+    "xstate": "^4.29.0"
   }
 }
