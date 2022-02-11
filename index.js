@@ -1,5 +1,6 @@
 require('dotenv').config(); //initialize dotenv
 const Discord = require('discord.js'); //import discord.js
+const werewolfGame = require('./commands/werewolf/states/stateMachine')
 
 const client = new Discord.Client({
   intents: [
@@ -10,33 +11,11 @@ const client = new Discord.Client({
   partials: ["CHANNEL"]
 }); //create new client
 
-werewolfRoles = new Map()
-werewolfRoles.set("angel", { quantity: 1, playerList: []})
-werewolfRoles.set("assassin", { quantity: 0, playerList: []})
-werewolfRoles.set("prophet", { quantity: 0, playerList: []})
-
-werewolfContext = {
-  playerList: [],
-  aliveList: [],
-  roles: werewolfRoles,
-  state: {
-    states: {
-      "Not started": 0,
-      "Assassin":    1,
-      "Prophet":     2,
-      "Angel":       3,
-      "Villagers":   4,
-      "Game over":   5
-    },
-    current: 0
-  }
-}
-
 let context = {
   client,
   prefix: "sudo",
   owners: ['241958969495650306', '337055700163362816'], // [Yussuki, Pedro]
-  werewolfContext
+  werewolfGame
 }
 
 client.commands = new Discord.Collection()
@@ -55,3 +34,5 @@ module.exports = context
 
 //make sure this line is the last line
 client.login(process.env.CLIENT_TOKEN);
+
+module.exports= client

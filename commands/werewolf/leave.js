@@ -3,19 +3,19 @@ module.exports = {
     category: "werewolf",
     permissions: [],
     devOnly: false,
-    run: async ({ werewolfContext, message, args }) => {
-        var index = werewolfContext.playerList.indexOf(message.author)
+    run: async ({ werewolfGame, message, args }) => {
+        var index = werewolfGame.machine.context.playerList.indexOf(message.member.id)
         // If user is not in the list
         if (index === -1) {
             // Notify it
-            message.reply(`${message.author} doesn't make part of the village.`)
+            message.reply(`${message.member} doesn't make part of the village.`)
         } else {
-            if (werewolfContext.state.current != werewolfContext.state.states['Not started'])
+            if (werewolfGame.machine.context.currentState != 'lobby')
                 throw("?You can't leave once joined :smiling_imp:")
 
             // Remove user from list
-            werewolfContext.playerList.splice(index, 1)
-            message.reply(`${message.author} ran from the village... :house_abandoned:`)
+            werewolfGame.machine.context.playerList.splice(index, 1)
+            message.reply(`${message.member} ran from the village... :house_abandoned:`)
         }
     }
 }
